@@ -22,17 +22,19 @@ namespace APIAondeAssistir.Application.Services
         }
         public async Task<bool> CreateAsync(Time time)
         {
-            //TO-DO): checar se o id do time já existe
+            // Se o código do time informado é valido
             if (time.Codigo < 1)
             {
                 time.Codigo = await _timeRepository.GetNewId();
             }
-            var timeCreated = _timeRepository.CreateAsync(time);
-            if (timeCreated != null)
+
+            //verifica se o time já existe
+            if (await _timeRepository.GetById(time.Codigo) != null)
             {
-                return await Task.FromResult(true);
+                return false;
             }
-            return await Task.FromResult(false); 
+
+            return await _timeRepository.CreateAsync(time);  
         }
         public async Task<bool> UpdateAsync(Time time)
         {
