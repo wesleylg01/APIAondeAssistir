@@ -62,7 +62,7 @@ namespace APIAondeAssistir.Controllers
         {
             if (time == null)
             {
-                return BadRequest("Dados ou Id inválidos, revise os dados e tente novamente.");
+                return BadRequest("Dados inválidos, revise os dados e tente novamente.");
             }
             var timeUpdated = await _timeService.UpdateAsync(time);
 
