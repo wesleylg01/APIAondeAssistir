@@ -1,5 +1,6 @@
 ﻿using APIAondeAssistir.Application.Interfaces;
 using APIAondeAssistir.Domain.Entities;
+using APIAondeAssistir.Domain.Enums;
 using APIAondeAssistir.Domain.Interfaces;
 
 namespace APIAondeAssistir.Application.Services
@@ -18,12 +19,15 @@ namespace APIAondeAssistir.Application.Services
         }
         public async Task<Time> GetById(int id)
         {
-            return await _timeRepository.GetById(id);
+            var time = await _timeRepository.GetById(id);
+            if (time == null)
+            {
+                throw new KeyNotFoundException(TimeErros.TimeNaoEncontrado.GetMessage());
+            }
+            return time;
         }
         public async Task<bool> CreateAsync(Time time)
         {
-            /* verifica se o código do time informado é valido
-             * se não for gera, um válido */
             if (time.Codigo < 1)
             {
                 time.Codigo = await _timeRepository.GetNewId();
@@ -33,12 +37,7 @@ namespace APIAondeAssistir.Application.Services
         }
         public async Task<bool> UpdateAsync(Time time)
         {
-            var timeUpdated = _timeRepository.UpdateAsync(time);
-            if (timeUpdated != null)
-            {
-                return await Task.FromResult(true);
-            }
-            return await Task.FromResult(false); 
+            return await _timeRepository.UpdateAsync(time);
         }
         public Task<bool> DeleteAsync(int id)
         {

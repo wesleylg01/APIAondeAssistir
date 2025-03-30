@@ -1,6 +1,5 @@
 ﻿using APIAondeAssistir.Application.Interfaces;
 using APIAondeAssistir.Domain.Entities;
-using APIAondeAssistir.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIAondeAssistir.Controllers

@@ -4,9 +4,6 @@ using APIAondeAssistir.Domain.Interfaces;
 using APIAondeAssistir.Infrastructure.Firebase;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics.Tracing;
 
 namespace APIAondeAssistir.Infrastructure.Repositories
 {
@@ -33,7 +30,6 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
             return times;
         }
-
         public async Task<Time> GetById(int id)
         {
             var time = (await _firebaseClient
@@ -63,7 +59,6 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
             return created != null;
         }
-
         public async Task<bool> UpdateAsync(Time time)
         {
             var toUpdate = (await _firebaseClient
@@ -102,7 +97,6 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
             return true;
         }
-
         public async Task<int> GetNewId()
         {
             var times = await GetAllAsync();
