@@ -15,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FirebaseContext>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
+builder.Services.AddScoped<ITransmissorService, TransmissorService>();
+builder.Services.AddScoped<ITransmissorRepository, TransmissorRepository>();
 
 
 var app = builder.Build();

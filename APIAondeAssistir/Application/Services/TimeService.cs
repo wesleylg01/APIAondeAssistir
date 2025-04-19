@@ -22,7 +22,7 @@ namespace APIAondeAssistir.Application.Services
             var time = await _timeRepository.GetById(id);
             if ((time == null) || (time.Codigo == 0) || (time.Nome == null))
             {
-                throw new KeyNotFoundException(TimeErros.TimeNaoEncontrado.GetMessage());
+                throw new KeyNotFoundException(TimeErrors.TimeNaoEncontrado.GetMessage());
             }
             return time;
         }

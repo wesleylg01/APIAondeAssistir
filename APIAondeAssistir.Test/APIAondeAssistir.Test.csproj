@@ -19,11 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\APIAondeAssistir\APIAondeAssistir.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\APIAondeAssistir\APIAondeAssistir.csproj" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

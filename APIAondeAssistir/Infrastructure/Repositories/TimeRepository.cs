@@ -39,7 +39,7 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
             if (time == null)
             {
-                throw new KeyNotFoundException(TimeErros.TimeNaoEncontrado.GetMessage());
+                throw new KeyNotFoundException(TransmissorErrors.TransmissorNaoEncontrado.GetMessage());
             }
 
             return time;
@@ -47,8 +47,7 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
         public async Task<bool> CreateAsync (Time time)
         {
-            var exists = await GetById(time.Codigo);
-            if (exists != null)
+            if (time != null)
             {
                 return false;
             }
@@ -80,6 +79,7 @@ namespace APIAondeAssistir.Infrastructure.Repositories
         }
         public async Task<bool> DeleteAsync(int id)
         {
+            //obtem a time a ser deletado
             var toDelete = (await _firebaseClient
                 .Child("Time")
                 .OnceAsync<Time>())
@@ -87,7 +87,7 @@ namespace APIAondeAssistir.Infrastructure.Repositories
 
             if (toDelete == null)
             {
-                return false; // Não encontrado
+                return false;
             }
 
             await _firebaseClient

@@ -1,17 +1,17 @@
 ﻿namespace APIAondeAssistir.Domain.Enums
 {
-    public enum TimeErros
+    public enum TimeErrors
     {
         TimeNaoEncontrado = 0
     }
 
     public static class TimeErrosExtensions
     {
-        public static string GetMessage(this TimeErros erro)
+        public static string GetMessage(this TimeErrors erro)
         {
             return erro switch
             {
-                TimeErros.TimeNaoEncontrado => "O time especificado não foi encontrado.",
+                TimeErrors.TimeNaoEncontrado => "O time especificado não foi encontrado.",
                 _ => "Erro desconhecido."
             };
         }
