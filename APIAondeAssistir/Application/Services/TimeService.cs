@@ -20,10 +20,6 @@ namespace APIAondeAssistir.Application.Services
         public async Task<Time> GetById(int id)
         {
             var time = await _timeRepository.GetById(id);
-            if ((time == null) || (time.Codigo == 0) || (time.Nome == null))
-            {
-                throw new KeyNotFoundException(TimeErrors.TimeNaoEncontrado.GetMessage());
-            }
             return time;
         }
         public async Task<bool> CreateAsync(Time time)

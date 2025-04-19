@@ -18,10 +18,6 @@ namespace APIAondeAssistir.Application.Services
         public async Task<Transmissor> GetById(int id)
         {
             var transmissor = await _transmissorRepository.GetById(id);
-            if ((transmissor == null) || (transmissor.Codigo == 0) || (transmissor.Nome == null))
-            {
-                throw new KeyNotFoundException("Transmissor não encontrado.");
-            }
             return transmissor;
         }
 

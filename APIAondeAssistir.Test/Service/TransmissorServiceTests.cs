@@ -65,7 +65,6 @@ namespace APIAondeAssistir.Test.Service
             Assert.Equal("Transmissor não encontrado", exception.Message);
         }
 
-
         [Fact]
         public async Task Create_Success()
         {

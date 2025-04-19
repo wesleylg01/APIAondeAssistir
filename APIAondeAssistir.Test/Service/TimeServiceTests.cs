@@ -54,36 +54,6 @@ namespace APIAondeAssistir.Tests.Services
             Assert.Equal(id, result.Codigo);
             Assert.Equal("São Paulo", result.Nome);
         }
-        [Fact]
-        public async Task GetById_WhenIdInvalid()
-        {
-            // Arrange
-            _timeRepositoryMock.Setup(repo => repo.GetById(It.IsAny<int>())).ReturnsAsync((Time)null);
-
-            // Act & Assert
-            await Assert.ThrowsAsync<KeyNotFoundException>(() => _timeService.GetById(1));
-        }
-        [Fact]
-        public async Task GetById_WhenTimeCodigoIsZero()
-        {
-            // Arrange
-            var fakeTime = new Time { Codigo = 0, Nome = "Time Inválido" };
-            _timeRepositoryMock.Setup(repo => repo.GetById(1)).ReturnsAsync(fakeTime);
-
-            // Act & Assert
-            await Assert.ThrowsAsync<KeyNotFoundException>(() => _timeService.GetById(1));
-        }
-
-        [Fact]
-        public async Task GetById_WhenTimeNomeIsNull()
-        {
-            // Arrange
-            var fakeTime = new Time { Codigo = 1, Nome = null };
-            _timeRepositoryMock.Setup(repo => repo.GetById(1)).ReturnsAsync(fakeTime);
-
-            // Act & Assert
-            await Assert.ThrowsAsync<KeyNotFoundException>(() => _timeService.GetById(1));
-        }
 
         [Fact]
         public async Task CreateAsync_Success()
