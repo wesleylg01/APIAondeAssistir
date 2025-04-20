@@ -17,6 +17,10 @@ builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
 builder.Services.AddScoped<ITransmissorService, TransmissorService>();
 builder.Services.AddScoped<ITransmissorRepository, TransmissorRepository>();
+builder.Services.AddScoped<ICampeonatoService, CampeonatoService>();
+builder.Services.AddScoped<ICampeonatoRepository, CampeonatoRepository>();
+builder.Services.AddScoped<IJogoService, JogoService>();
+builder.Services.AddScoped<IJogoRepository, JogoRepository>();
 
 
 var app = builder.Build();
