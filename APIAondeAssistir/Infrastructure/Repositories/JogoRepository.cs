@@ -4,7 +4,6 @@ using APIAondeAssistir.Domain.Interfaces;
 using APIAondeAssistir.Infrastructure.Firebase;
 using Firebase.Database;
 using Firebase.Database.Query;
-using System.Linq;
 
 namespace APIAondeAssistir.Infrastructure.Repositories
 {
@@ -113,6 +112,30 @@ namespace APIAondeAssistir.Infrastructure.Repositories
             var campeonatos = await GetAllAsync();
 
             return campeonatos.DefaultIfEmpty(new Jogo { Codigo = 0 }).Max(t => t.Codigo) + 1;
+        }
+
+        public async Task<bool> DeleteAnterioresAsync()
+        {
+            var jogos = await _firebaseClient
+               .Child("Jogo")
+               .OnceAsync<Jogo>();
+
+            if (jogos is not null)
+            {
+                var dataAtual = DateTime.Now.Date;
+
+                foreach (var jogo in jogos)
+                {
+                    if (jogo.Object.DataDia < dataAtual)
+                    {
+                        await _firebaseClient.Child("Jogo").Child(jogo.Key).DeleteAsync();
+                    }
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

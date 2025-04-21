@@ -144,5 +144,10 @@ namespace APIAondeAssistir.Application.Services
 
             return response;
         }
+
+        public async Task<bool> DeleteAnterioresAsync()
+        {
+            return await _jogoRepository.DeleteAnterioresAsync();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace APIAondeAssistir.Domain.Interfaces
         Task<bool> UpdateAsync(Jogo jogo);
         Task<bool> DeleteAsync(int id);
         Task<int> GetNewId();
+        Task<bool> DeleteAnterioresAsync();
     }
 }

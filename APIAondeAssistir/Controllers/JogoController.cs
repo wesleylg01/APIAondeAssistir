@@ -73,7 +73,7 @@ namespace APIAondeAssistir.Controllers
             return Ok(jogoUpdated);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var jogo = await _jogoService.DeleteAsync(id);
@@ -85,7 +85,7 @@ namespace APIAondeAssistir.Controllers
             return NoContent();
         }
 
-        [HttpGet("brasileirao/rodada{rodada}")]
+        [HttpGet("brasileirao/rodada/{rodada}")]
         public async Task<IActionResult> GetByRodada(int rodada)
         {
             var jogo = await _jogoService.GetByRodada(rodada);
@@ -97,7 +97,7 @@ namespace APIAondeAssistir.Controllers
             return Ok(jogo);
         }
 
-        [HttpGet("/time{time}")]
+        [HttpGet("time/{time}")]
         public async Task<IActionResult> GetJogosListByTime(int time)
         {
             var jogo = await _jogoService.GetJogosListByTime(time);
@@ -109,7 +109,7 @@ namespace APIAondeAssistir.Controllers
             return Ok(jogo);
         }
 
-        [HttpGet("/details{id}")]
+        [HttpGet("details/{id}")]
         public async Task<IActionResult> GetJogoDetails(int id)
         {
             var jogo = await _jogoService.GetJogoDetails(id);
@@ -119,6 +119,16 @@ namespace APIAondeAssistir.Controllers
                 return NotFound("Ocorreu um erro ao obter os dados do Jogo.");
             }
             return Ok(jogo);
+        }
+
+        [HttpDelete("anteriores")]
+        public async Task<IActionResult> DeleteAnteriores()
+        {
+            var deleted = await _jogoService.DeleteAnterioresAsync();
+            if (!deleted)
+                return StatusCode(500, "Erro ao deletar jogos anteriores");
+
+            return NoContent();
         }
     }
 }
