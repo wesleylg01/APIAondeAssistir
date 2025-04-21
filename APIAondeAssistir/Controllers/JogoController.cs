@@ -84,5 +84,41 @@ namespace APIAondeAssistir.Controllers
             }
             return NoContent();
         }
+
+        [HttpGet("brasileirao/rodada{rodada}")]
+        public async Task<IActionResult> GetByRodada(int rodada)
+        {
+            var jogo = await _jogoService.GetByRodada(rodada);
+
+            if (jogo == null)
+            {
+                return NotFound("Ocorreu um erro ao obter os dados do rodada.");
+            }
+            return Ok(jogo);
+        }
+
+        [HttpGet("/time{time}")]
+        public async Task<IActionResult> GetJogosListByTime(int time)
+        {
+            var jogo = await _jogoService.GetJogosListByTime(time);
+
+            if (jogo == null)
+            {
+                return NotFound("Ocorreu um erro ao obter os jogos deste time.");
+            }
+            return Ok(jogo);
+        }
+
+        [HttpGet("/details{id}")]
+        public async Task<IActionResult> GetJogoDetails(int id)
+        {
+            var jogo = await _jogoService.GetJogoDetails(id);
+
+            if (jogo == null)
+            {
+                return NotFound("Ocorreu um erro ao obter os dados do Jogo.");
+            }
+            return Ok(jogo);
+        }
     }
 }
