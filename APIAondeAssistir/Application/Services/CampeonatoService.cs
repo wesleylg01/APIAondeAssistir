@@ -19,7 +19,6 @@ namespace APIAondeAssistir.Application.Services
         public async Task<Campeonato> GetById(int id)
         {
             return await _campeonatoRepository.GetById(id);
-
         }
         public async Task<bool> CreateAsync(Campeonato campeonato)
         {
