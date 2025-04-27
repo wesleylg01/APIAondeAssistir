@@ -2,8 +2,6 @@
 using APIAondeAssistir.Domain.Entities;
 using APIAondeAssistir.Domain.Interfaces;
 using APIAondeAssistir.DTOs;
-using System.Reactive.Threading.Tasks;
-using System.Text.Json.Serialization;
 
 namespace APIAondeAssistir.Application.Services
 {

@@ -1,5 +1,4 @@
-﻿using APIAondeAssistir.Application.Interfaces;
-using APIAondeAssistir.Application.Services;
+﻿using APIAondeAssistir.Application.Services;
 using APIAondeAssistir.Domain.Entities;
 using APIAondeAssistir.Domain.Interfaces;
 using Moq;
